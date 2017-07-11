@@ -1,0 +1,26 @@
+{
+  "name": "react-native-carousel-view",
+  "version": "1.0.0",
+  "description": "react-native carousel",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chilijung <chilijung@gmail.com> (http://lijung.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.2.0",
+    "eslint-config-google": "^0.9.1"
+  },
+  "peerDependencies": {
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.46.1"
+  },
+  "dependencies": {
+    "react-timer-mixin": "^0.13.3"
+  }
+}
