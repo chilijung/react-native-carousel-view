@@ -3,5 +3,8 @@
     "google",
     "plugin:react/recommended"
   ],
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "rules": {
+    "require-jsdoc": 0
+  }
 }

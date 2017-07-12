@@ -16,11 +16,10 @@
     "eslint": "^4.2.0",
     "eslint-config-google": "^0.9.1"
   },
-  "peerDependencies": {
-    "react": "16.0.0-alpha.12",
-    "react-native": "0.46.1"
-  },
   "dependencies": {
+    "react": "16.0.0-alpha.12",
+    "react-mixin": "^3.0.5",
+    "react-native": "0.46.1",
     "react-timer-mixin": "^0.13.3"
   }
 }

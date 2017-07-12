@@ -11,42 +11,33 @@ import {
   Text,
   View
 } from 'react-native';
+import Carousel from 'react-native-carousel-view';
 
 export default class example extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <Carousel width={375}>
+        <View style={styles.container}>
+          <Text>Page 1</Text>
+        </View>
+        <View style={styles.container}>
+          <Text>Page 2</Text>
+        </View>
+        <View style={styles.container}>
+          <Text>Page 3</Text>
+        </View>
+      </Carousel>
     );
   }
 }
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
+    width: 375,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    backgroundColor: 'transparent',
   },
 });
 
