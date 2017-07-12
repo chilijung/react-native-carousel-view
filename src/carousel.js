@@ -44,20 +44,20 @@ export default class Carousel extends Component {
   setTimeout: any
 
   static defaultProps = {
-      hideIndicators: false,
-      indicatorColor: '#000000',
-      indicatorSize: 20,
-      inactiveIndicatorColor: '#999999',
-      indicatorAtBottom: true,
-      indicatorOffset: 0,
-      indicatorText: '•',
-      inactiveIndicatorText: '•',
-      width: null,
-      initialPage: 0,
-      indicatorSpace: 10,
-      animate: true,
-      delay: 1000,
-      loop: true,
+    hideIndicators: false,
+    indicatorColor: '#000000',
+    indicatorSize: 20,
+    inactiveIndicatorColor: '#999999',
+    indicatorAtBottom: true,
+    indicatorOffset: 0,
+    indicatorText: '•',
+    inactiveIndicatorText: '•',
+    width: null,
+    initialPage: 0,
+    indicatorSpace: 10,
+    animate: true,
+    delay: 1000,
+    loop: true,
   }
 
   constructor(props: Props) {
@@ -113,15 +113,15 @@ export default class Carousel extends Component {
     }
 
     if (animate && this.children) {
-        this._setUpTimer();
+      this._setUpTimer();
     }
   }
 
   _setUpTimer() {
-     if (this.children.length > 1) {
-         this.clearTimeout(this.timer);
-         this.timer = this.setTimeout(this._animateNextPage, this.props.delay);
-     }
+    if (this.children.length > 1) {
+      this.clearTimeout(this.timer);
+      this.timer = this.setTimeout(this._animateNextPage, this.props.delay);
+    }
   }
 
   getWidth(): number {
@@ -149,7 +149,7 @@ export default class Carousel extends Component {
   }
 
   _onAnimationBegin() {
-     this.clearTimeout(this.timer);
+    this.clearTimeout(this.timer);
   }
 
   _onAnimationEnd(activePage) {
