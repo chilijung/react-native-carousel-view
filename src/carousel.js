@@ -29,7 +29,7 @@ type Props = {
   delay: number,
   loop: boolean,
   children: any,
-  refs: any,
+  onPageChange?: (number) => void,
 }
 
 export default class Carousel extends Component {
@@ -81,17 +81,17 @@ export default class Carousel extends Component {
 
   componentDidMount() {
     if (this.props.initialPage > 0) {
-      this.refs.pager.scrollToPage(this.props.initialPage, false);
+      this.pager.scrollToPage(this.props.initialPage, false);
     }
 
-    if (this.props.animate && this.props.children){
+    if (this.props.animate && this.props.children) {
         this._setUpTimer();
     }
   }
 
   indicatorPressed(activePage) {
     this.setState({activePage});
-    this.refs.pager.scrollToPage(activePage);
+    this.pager.scrollToPage(activePage);
   }
 
   renderPageIndicator() {
@@ -99,7 +99,9 @@ export default class Carousel extends Component {
       return null;
     }
     const indicators = [];
-    const indicatorStyle = this.props.indicatorAtBottom ? { bottom: this.props.indicatorOffset } : { top: this.props.indicatorOffset }
+    const indicatorStyle = this.props.indicatorAtBottom ?
+      {bottom: this.props.indicatorOffset} :
+      {top: this.props.indicatorOffset};
     let style;
     let position;
 
@@ -109,18 +111,23 @@ export default class Carousel extends Component {
     position.left = (this.getWidth() - position.width) / 2;
 
     for (const i = 0, l = this.props.children.length; i < l; i++) {
-      if (typeof this.props.children[i] === "undefined") {
+      if (typeof this.props.children[i] === 'undefined') {
         continue;
       }
 
-      style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
+      style = i === this.state.activePage ?
+        {color: this.props.indicatorColor} :
+        {color: this.props.inactiveIndicatorColor};
       indicators.push(
          <Text
-            style={[style, { fontSize: this.props.indicatorSize }]}
+            style={[style, {fontSize: this.props.indicatorSize}]}
             key={i}
-            onPress={this.indicatorPressed.bind(this,i)}
+            onPress={() => this.indicatorPressed(i)}
           >
-             { i === this.state.activePage  ? this.props.indicatorText : this.props.inactiveIndicatorText }
+            {
+              i === this.state.activePage ?
+                this.props.indicatorText : this.props.inactiveIndicatorText
+            }
           </Text>
       );
     }
@@ -168,9 +175,11 @@ export default class Carousel extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{flex: 1}}>
         <CarouselPager
-          ref="pager"
+          ref={(pager) => {
+            this.pager = pager;
+          }}
           width={this.getWidth()}
           contentContainerStyle={styles.container}
           onBegin={this._onAnimationBegin}
