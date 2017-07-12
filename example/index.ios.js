@@ -13,9 +13,6 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-carousel-view';
 
-console.log('ios hihihi')
-console.log(Carousel)
-
 export default class example extends Component {
   render() {
     return (
@@ -29,6 +26,7 @@ export default class example extends Component {
         <View style={styles.container}>
           <Text>Page 3</Text>
         </View>
+        {undefined}
       </Carousel>
     );
   }

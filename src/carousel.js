@@ -2,7 +2,7 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import React, {Component, Children} from 'react';
 import {
   Dimensions,
   Text,
@@ -37,6 +37,11 @@ export default class Carousel extends Component {
   state: {
     activePage: number
   }
+  pager: CarouselPager
+  children: any[]
+  timer: any
+  clearTimeout: any
+  setTimeout: any
 
   static defaultProps = {
       hideIndicators: false,
@@ -59,7 +64,7 @@ export default class Carousel extends Component {
     super(props);
 
     this.state = {
-      activePage: this.props.initialPage > 0 ? this.props.initialPage : 0,
+      activePage: props.initialPage > 0 ? props.initialPage : 0,
     };
 
     (this: any).getWidth = this.getWidth.bind(this);
@@ -69,69 +74,131 @@ export default class Carousel extends Component {
     (this: any)._animateNextPage = this._animateNextPage.bind(this);
     (this: any)._onAnimationBegin = this._onAnimationBegin.bind(this);
     (this: any)._onAnimationEnd = this._onAnimationEnd.bind(this);
+    (this: any)._filterChildren = this._filterChildren.bind(this);
+    (this: any)._resetPager = this._resetPager.bind(this);
+    this._filterChildren();
   }
 
-  getWidth() {
-    if (this.props.width !== null) {
-      return this.props.width;
-    } else {
-      return Dimensions.get('window').width;
+  _filterChildren() {
+    const {children} = this.props;
+
+    if (!children) {
+      throw new Error('You have to set children inside Carousel component');
     }
+
+    // filter undefined children
+    this.children = Children.toArray(children).filter((child) => child);
+  }
+
+  componentWillReceiveProps(nextProps: Props) {
+    this._filterChildren();
+
+    // when received props it will update all views, with new props.
+    this._resetPager();
   }
 
   componentDidMount() {
-    if (this.props.initialPage > 0) {
-      this.pager.scrollToPage(this.props.initialPage, false);
-    }
-
-    if (this.props.animate && this.props.children) {
-        this._setUpTimer();
-    }
+    this._resetPager();
   }
 
-  indicatorPressed(activePage) {
+  indicatorPressed(activePage: number) {
     this.setState({activePage});
     this.pager.scrollToPage(activePage);
   }
 
+  _resetPager() {
+    const {initialPage, animate} = this.props;
+    if (initialPage > 0) {
+      this.pager.scrollToPage(initialPage, false);
+    }
+
+    if (animate && this.children) {
+        this._setUpTimer();
+    }
+  }
+
+  _setUpTimer() {
+     if (this.children.length > 1) {
+         this.clearTimeout(this.timer);
+         this.timer = this.setTimeout(this._animateNextPage, this.props.delay);
+     }
+  }
+
+  getWidth(): number {
+    const {width} = this.props;
+    if (width) {
+      return width;
+    }
+    return Dimensions.get('window').width;
+  }
+
+  _animateNextPage() {
+    let {activePage} = this.state;
+    if (activePage < this.children.length - 1) {
+      activePage++;
+    } else if (this.props.loop) {
+      activePage = 0;
+    } else if (!this.props.loop) {
+      // no loop, clear timer
+      this.clearTimeout(this.timer);
+      return;
+    }
+
+    this.indicatorPressed(activePage);
+    this._setUpTimer();
+  }
+
+  _onAnimationBegin() {
+     this.clearTimeout(this.timer);
+  }
+
+  _onAnimationEnd(activePage) {
+    const {onPageChange} = this.props;
+    if (onPageChange) {
+      onPageChange(activePage);
+    }
+    this.setState({activePage}, this._setUpTimer());
+  }
+
   renderPageIndicator() {
-    if (this.props.hideIndicators === true) {
+    const {hideIndicators, indicatorOffset,
+      indicatorAtBottom, indicatorSpace,
+      indicatorColor, inactiveIndicatorColor,
+      indicatorSize, indicatorText, inactiveIndicatorText} = this.props;
+    const {activePage} = this.state;
+    if (hideIndicators === true) {
       return null;
     }
+
     const indicators = [];
-    const indicatorStyle = this.props.indicatorAtBottom ?
-      {bottom: this.props.indicatorOffset} :
-      {top: this.props.indicatorOffset};
+    const indicatorStyle = indicatorAtBottom ?
+      {bottom: indicatorOffset} :
+      {top: indicatorOffset};
+    const indicatorWidth = this.children.length * indicatorSpace;
     let style;
     let position;
 
     position = {
-      width: this.props.children.length * this.props.indicatorSpace,
+      width: indicatorWidth,
+      left: (this.getWidth() - indicatorWidth) / 2,
     };
-    position.left = (this.getWidth() - position.width) / 2;
 
-    for (const i = 0, l = this.props.children.length; i < l; i++) {
-      if (typeof this.props.children[i] === 'undefined') {
-        continue;
-      }
-
-      style = i === this.state.activePage ?
-        {color: this.props.indicatorColor} :
-        {color: this.props.inactiveIndicatorColor};
+    this.children.forEach((child, i) => {
+      style = i === activePage ?
+        {color: indicatorColor} :
+        {color: inactiveIndicatorColor};
       indicators.push(
-         <Text
-            style={[style, {fontSize: this.props.indicatorSize}]}
-            key={i}
-            onPress={() => this.indicatorPressed(i)}
-          >
-            {
-              i === this.state.activePage ?
-                this.props.indicatorText : this.props.inactiveIndicatorText
-            }
-          </Text>
+        <Text
+          style={[style, {fontSize: indicatorSize}]}
+          key={i}
+          onPress={() => this.indicatorPressed(i)}
+        >
+          {i === activePage ? indicatorText : inactiveIndicatorText}
+        </Text>
       );
-    }
+    });
 
+    // only one item don't need indicators
     if (indicators.length === 1) {
       return null;
     }
@@ -141,36 +208,6 @@ export default class Carousel extends Component {
         {indicators}
       </View>
     );
-  }
-
-  _setUpTimer() {
-     if (this.props.children.length > 1) {
-         this.clearTimeout(this.timer);
-         this.timer = this.setTimeout(this._animateNextPage, this.props.delay);
-     }
-  }
-
-  _animateNextPage() {
-     let activePage = 0;
-     if (this.state.activePage < this.props.children.length - 1) {
-         activePage = this.state.activePage + 1;
-     } else if (!this.props.loop) {
-         return;
-     }
-
-     this.indicatorPressed(activePage);
-     this._setUpTimer();
-  }
-
-  _onAnimationBegin() {
-     this.clearTimeout(this.timer);
-  }
-
-  _onAnimationEnd(activePage) {
-    this.setState({activePage});
-    if (this.props.onPageChange) {
-      this.props.onPageChange(activePage);
-    }
   }
 
   render() {
