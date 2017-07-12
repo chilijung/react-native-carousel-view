@@ -18,7 +18,11 @@ export default class CarouselPager extends Component {
     if (typeof animated === 'undefined') {
       animated = true;
     }
-    this.refs.scrollView.scrollTo({x: page * this.props.width, y: 0, animated: animated});
+    this.refs.scrollView.scrollTo({
+      x: page * this.props.width,
+      y: 0,
+      animated,
+    });
   }
 
   _onMomentumScrollEnd(e) {

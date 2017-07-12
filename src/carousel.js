@@ -46,15 +46,15 @@ export default class Carousel extends Component {
   static defaultProps = {
       hideIndicators: false,
       indicatorColor: '#000000',
-      indicatorSize: 50,
+      indicatorSize: 20,
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
-      indicatorOffset: 250,
+      indicatorOffset: 0,
       indicatorText: '•',
       inactiveIndicatorText: '•',
       width: null,
       initialPage: 0,
-      indicatorSpace: 25,
+      indicatorSpace: 10,
       animate: true,
       delay: 1000,
       loop: true,
@@ -171,7 +171,7 @@ export default class Carousel extends Component {
     }
 
     const indicators = [];
-    const indicatorStyle = indicatorAtBottom ?
+    const positionIndicatorStyle = indicatorAtBottom ?
       {bottom: indicatorOffset} :
       {top: indicatorOffset};
     const indicatorWidth = this.children.length * indicatorSpace;
@@ -179,7 +179,7 @@ export default class Carousel extends Component {
     let position;
 
     position = {
-      width: indicatorWidth,
+      minWidth: indicatorWidth,
       left: (this.getWidth() - indicatorWidth) / 2,
     };
 
@@ -204,21 +204,22 @@ export default class Carousel extends Component {
     }
 
     return (
-      <View style={[styles.pageIndicator, position, indicatorStyle]}>
+      <View style={[styles.pageIndicator, position, positionIndicatorStyle]}>
         {indicators}
       </View>
     );
   }
 
   render() {
+    const width = this.getWidth();
     return (
-      <View style={{flex: 1}}>
+      <View style={{width, overflow: 'hidden'}}>
         <CarouselPager
           ref={(pager) => {
             this.pager = pager;
           }}
-          width={this.getWidth()}
-          contentContainerStyle={styles.container}
+          width={width}
+          contentContainerStyle={styles.contentContainer}
           onBegin={this._onAnimationBegin}
           onEnd={this._onAnimationEnd}
         >
