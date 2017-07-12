@@ -223,7 +223,7 @@ export default class Carousel extends Component {
           onBegin={this._onAnimationBegin}
           onEnd={this._onAnimationEnd}
         >
-          {this.props.children}
+          {this.children}
         </CarouselPager>
         {this.renderPageIndicator()}
       </View>
