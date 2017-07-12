@@ -3,20 +3,37 @@
  */
 import React, {Component} from 'react';
 import {
-  View,
   ViewPagerAndroid,
 } from 'react-native';
 
+type Props = {
+  width: number,
+  onEnd: (activePage: number) => void,
+  onBegin: () => void,
+  contentContainerStyle: any,
+  children: any,
+}
+
 export default class CarouselPager extends Component {
-  scrollToPage(page, animated) {
+  viewPager: ViewPagerAndroid
+  props: Props
+
+  constructor(props: Props) {
+    super(props);
+    (this: any).scrollToPage = this.scrollToPage.bind(this);
+    (this: any)._onPageSelected = this._onPageSelected.bind(this);
+  }
+
+  scrollToPage(page: number, animated?: boolean) {
     if (typeof animated === 'undefined') {
       animated = true;
     }
     if (animated) {
-      this.refs.viewPager.setPage(page);
+      this.viewPager.setPage(page);
     } else {
-      this.refs.viewPager.setPageWithoutAnimation(page);
+      this.viewPager.setPageWithoutAnimation(page);
     }
+
     this._onPageSelected(page);
   }
 
@@ -25,24 +42,23 @@ export default class CarouselPager extends Component {
   }
 
   render() {
+    const {children, contentContainerStyle, onBegin} = this.props;
     return (
       <ViewPagerAndroid
-        ref="viewPager"
+        ref={(viewPager) => {
+          this.viewPager = viewPager;
+        }}
         style={{flex: 1}}
-        contentContainerStyle={this.props.contentContainerStyle}
+        contentContainerStyle={contentContainerStyle}
         automaticallyAdjustContentInsets={false}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         bounces={false}
-        onPageScroll={this.props.onBegin}
+        onPageScroll={onBegin}
         onPageSelected={(e) => this._onPageSelected(e.nativeEvent.position)}
         scrollsToTop={false}
-        >
-        {
-          this.props.children.map((c, idx) => {
-            return <View key={idx} style={{flex: 1}}>{c}</View>;
-          })
-        }
+      >
+        {children}
       </ViewPagerAndroid>
     );
   }

@@ -17,9 +17,9 @@ type Props = {
 export default class CarouselPager extends Component {
   props: Props
   scrollView: ScrollView
+
   constructor(props: Props) {
     super(props);
-
     (this: any).scrollToPage = this.scrollToPage.bind(this);
     (this: any)._onMomentumScrollEnd = this._onMomentumScrollEnd.bind(this);
   }
