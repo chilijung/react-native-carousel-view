@@ -48,15 +48,9 @@ export default class CarouselPager extends Component {
         ref={(viewPager) => {
           this.viewPager = viewPager;
         }}
-        style={{flex: 1}}
-        contentContainerStyle={contentContainerStyle}
-        automaticallyAdjustContentInsets={false}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        bounces={false}
+        style={[contentContainerStyle]}
         onPageScroll={onBegin}
         onPageSelected={(e) => this._onPageSelected(e.nativeEvent.position)}
-        scrollsToTop={false}
       >
         {children}
       </ViewPagerAndroid>
