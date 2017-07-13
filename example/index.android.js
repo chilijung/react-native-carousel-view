@@ -6,30 +6,58 @@
 
 import React, {Component} from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
+  AppRegistry,
 } from 'react-native';
 import Carousel from 'react-native-carousel-view';
 
 export default class example extends Component {
   render() {
     return (
-      <View>
-        <Carousel width={375} contentContainerStyle={{
-          height: 500,
-        }}>
-          <View style={styles.container}>
-            <Text>Page 1</Text>
-          </View>
-          <View style={styles.container}>
-            <Text>Page 2</Text>
-          </View>
-          <View style={styles.container}>
-            <Text>Page 3</Text>
-          </View>
-        </Carousel>
+      <View style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <View style={styles.container}>
+          <Carousel width={375} contentContainerStyle={{
+            height: 300,
+          }}>
+            <View style={styles.contentContainer}>
+              <Text>Page 1</Text>
+            </View>
+            <View style={styles.contentContainer}>
+              <Text>Page 2</Text>
+            </View>
+            <View style={styles.contentContainer}>
+              <Text>Page 3</Text>
+            </View>
+          </Carousel>
+        </View>
+        <View style={styles.container}>
+          <Carousel
+            width={375}
+            delay={2000}
+            indicatorAtBottom={false}
+            indicatorSize={20}
+            indicatorText="✽"
+            indicatorColor="red"
+            contentContainerStyle={{
+              height: 300,
+            }}>
+            <View style={styles.contentContainer}>
+              <Text>Page 1</Text>
+            </View>
+            <View style={styles.contentContainer}>
+              <Text>Page 2</Text>
+            </View>
+            <View style={styles.contentContainer}>
+              <Text>Page 3</Text>
+            </View>
+          </Carousel>
+        </View>
       </View>
     );
   }
@@ -37,10 +65,18 @@ export default class example extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: 375,
-    height: 200,
-    backgroundColor: 'red',
+    flex: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  contentContainer: {
+    borderWidth: 2,
+    borderColor: '#CCC',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
+
 
 AppRegistry.registerComponent('example', () => example);

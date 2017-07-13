@@ -68,7 +68,7 @@ export default class CarouselPager extends Component {
         ref={(viewPager) => {
           this.viewPager = viewPager;
         }}
-        style={[contentContainerStyle]}
+        style={contentContainerStyle}
         onPageScrollStateChanged={this._pageStateChange}
         onPageSelected={this._selectedPage}
       >

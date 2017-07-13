@@ -1,7 +1,11 @@
 # react-native-carousel-view
 
-react-native carousel
+react-native carousel, work on both `iOS` and `android`, test on RN 0.46.1
 
+## Demo
+
+<img src="./example/android.gif" width="300">
+<img src="./example/ios.gif" width="300">
 
 ## Props
 
