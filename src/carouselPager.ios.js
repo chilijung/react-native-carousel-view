@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-import React, {Component} from 'react';
+import React, {Component, Children} from 'react';
 import {
   ScrollView,
 } from 'react-native';
@@ -43,7 +43,18 @@ export default class CarouselPager extends Component {
   }
 
   render() {
-    const {onBegin, children, contentContainerStyle} = this.props;
+    const {onBegin, children, contentContainerStyle, width} = this.props;
+    const {height} = contentContainerStyle;
+    const newChildren = Children.map(children, (element) => {
+      if (!React.isValidElement(element)) return;
+      const {style, ...restProps} = element.props;
+      return React.cloneElement(element, {
+        ...restProps,
+        // add width and height from contentContainerStyle
+        style: [{width, height}, style],
+      });
+    });
+
     return (
       <ScrollView
         ref={(scrollView) => {
@@ -59,7 +70,7 @@ export default class CarouselPager extends Component {
         onMomentumScrollEnd={this._onMomentumScrollEnd}
         scrollsToTop={false}
       >
-        {children}
+        {newChildren}
       </ScrollView>
     );
   }

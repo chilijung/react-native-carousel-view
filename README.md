@@ -163,13 +163,13 @@ This is an example.
   contentContainerStyle={{
     height: 300, // =====> the container will be height 300
   }}>
-  <View style={{height: 200, width: 375}}> // ===> child height 200, width should also set to 375
+  <View style={{height: 200, width: 300}}> // ===> child height 200, width 300. if the children's height and width is not set width and height from Carousel component will set to children.
     <Text>Page 1</Text>
   </View>
-  <View style={{height: 200, width: 375}}> // ===> child height 200, width should also set to 375
+  <View style={{height: 200, width: 300}}> // ===> child height 200, width 300
     <Text>Page 2</Text>
   </View>
-  <View style={{height: 200, width: 375}}> // ===> child height 200, width should also set to 375
+  <View style={{height: 200, width: 300}}> // ===> child height 200, width 300
     <Text>Page 3</Text>
   </View>
 </Carousel>
