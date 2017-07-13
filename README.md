@@ -26,23 +26,24 @@ react-native carousel, work on both `iOS` and `android`, test on RN 0.46.1
 
 ```js
 type Props = {
-  hideIndicators: boolean,
-  indicatorColor: string,
-  indicatorSize: number,
-  inactiveIndicatorColor: string,
-  indicatorAtBottom: boolean,
-  indicatorOffset: number,
-  indicatorText: string,
-  inactiveIndicatorText: string,
-  width: ?number,
-  initialPage: number,
-  indicatorSpace: number,
-  animate: boolean,
-  delay: number,
-  loop: boolean,
-  contentContainerStyle?: {[attr: string]: any},
+  hideIndicators: boolean, // Set to true to hide the indicators
+  indicatorColor: string, // Active indicator color
+  indicatorSize: number, // Indicator bullet size
+  inactiveIndicatorColor: string, // Inactive indicator color
+  indicatorAtBottom: boolean, // Set to false to show the indicators at the top
+  indicatorOffset: number, // Indicator relative position from top or bottom
+  indicatorText: string, // Active indicator content ( You can customize to use any Unicode character )
+
+  inactiveIndicatorText: string, // Inactive indicator content ( You can customize to use any Unicode character )
+  width: ?number, // the width of the carousel
+  initialPage: number, // initial start page
+  indicatorSpace: number, // space between each indicator
+  animate: boolean, // Enable carousel autoplay
+  delay: number, // Set Animation delay between slides
+  loop: boolean, // Allow infinite looped animation. Depends on Prop {...animate} set to true.
+  contentContainerStyle?: {[attr: string]: any}, // content container style, in `Android` this will pass to ViewPagerAndroid style props, in `iOS` this will pass to ScrollView contentContainerStyle props.
   children: any,
-  onPageChange?: (number) => void,
+  onPageChange?: (number) => void, // Called when the active page changes
 }
 ```
 
