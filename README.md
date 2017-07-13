@@ -1,6 +1,6 @@
 # react-native-carousel-view
 
-react-native carousel, work on both `iOS` and `android`, test on RN 0.46.1
+react-native carousel, work on both `iOS` and `android`, test on RN >= 0.45 (if this work on earlier version, please open an issue. And will be added here)
 
 ## Install
 
