@@ -41,7 +41,6 @@ type Props = {
   indicatorAtBottom: boolean, // Set to false to show the indicators at the top
   indicatorOffset: number, // Indicator relative position from top or bottom
   indicatorText: string, // Active indicator content ( You can customize to use any Unicode character )
-
   inactiveIndicatorText: string, // Inactive indicator content ( You can customize to use any Unicode character )
   width: ?number, // the width of the carousel
   initialPage: number, // initial start page
