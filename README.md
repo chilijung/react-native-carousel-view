@@ -2,6 +2,12 @@
 
 react-native carousel, work on both `iOS` and `android`, test on RN 0.46.1
 
+## Install
+
+```js
+npm install react-native-carousel-view
+```
+
 ## Demo
 <table>
   <tr>
