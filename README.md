@@ -4,14 +4,14 @@ react-native carousel, work on both `iOS` and `android`, test on RN 0.46.1
 
 ## Demo
 <table>
-  <th>
-    <td>
+  <tr>
+    <th>
       Android
-    </td>
-    <td>
+    </th>
+    <th>
       iOS
-    </td>
-  </th>
+    </th>
+  </tr>
   <tr>
     <td>
       <img src="./example/android.gif" width="300" style="float: left;">
