@@ -1,1 +1,1 @@
-module.exports = require('./src/carousel');
+module.exports = require('./lib/carousel');
