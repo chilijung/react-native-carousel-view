@@ -8,7 +8,7 @@ react-native carousel, work on both `iOS` and `android`, test on RN 0.46.1
 npm install react-native-carousel-view
 ```
 
-**NOTE**: styleing in iOS and Android is slightly [different](#difference)
+**NOTE**: styling in iOS and Android is slightly [different](#difference)
 
 ## Demo
 <table>
