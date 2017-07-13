@@ -67,6 +67,32 @@ static defaultProps = {
 }
 ```
 
+## Examples
+
+- Android: [Example](./example/index.android.js)
+
+- iOS: [Example](./example/index.ios.js)
+
+## Develop
+
+go to `example` folder and enter `yarn install` and `yarn run haul`
+
+select your platform:
+
+```
+➜  example git:(master) yarn run haul
+yarn run v0.27.5
+$ haul start
+? Select platform to bundle for (Use arrow keys)
+❯ ios - Serves iOS bundle
+  android - Serves Android bundle
+  all - Serves both platforms
+```
+
+and run `react-native run-ios` or `react-native run-android` to open simulators.
+
+**TIPS** if you want to live reload `example` when modified `react-native-carousel-view`, use `yarn link`!
+
 ## NOTE
 
 this repo is original from https://github.com/nick/react-native-carousel with lots of improvements.
