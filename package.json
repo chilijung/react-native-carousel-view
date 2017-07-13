@@ -1,18 +1,22 @@
 {
   "name": "react-native-carousel-view",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "react-native carousel",
   "main": "index.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d lib",
+    "prepublish": "yarn run build"
   },
   "author": "chilijung <chilijung@gmail.com> (http://lijung.com/)",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-preset-react-native": "^2.1.0",
     "eslint": "^4.2.0",
     "eslint-config-google": "^0.9.1",
     "flow-bin": "^0.49.1"

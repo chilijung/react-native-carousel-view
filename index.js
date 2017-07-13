@@ -1,2 +1,1 @@
-import Carousel from './src/carousel';
-export default Carousel;
+module.exports = require('./src/carousel');
