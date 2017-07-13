@@ -28,6 +28,7 @@ type Props = {
   animate: boolean,
   delay: number,
   loop: boolean,
+  contentContainerStyle?: {[attr: string]: any},
   children: any,
   onPageChange?: (number) => void,
 }
@@ -211,6 +212,7 @@ export default class Carousel extends Component {
   }
 
   render() {
+    const {contentContainerStyle} = this.props;
     const width = this.getWidth();
     return (
       <View style={{width, overflow: 'hidden'}}>
@@ -219,7 +221,10 @@ export default class Carousel extends Component {
             this.pager = pager;
           }}
           width={width}
-          contentContainerStyle={styles.contentContainer}
+          contentContainerStyle={[
+            styles.contentContainer,
+            contentContainerStyle,
+          ]}
           onBegin={this._onAnimationBegin}
           onEnd={this._onAnimationEnd}
         >

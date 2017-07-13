@@ -17,7 +17,9 @@ export default class example extends Component {
   render() {
     return (
       <View>
-        <Carousel width={200}>
+        <Carousel width={200} contentContainerStyle={{
+          height: 300,
+        }}>
           <View style={styles.container}>
             <Text>Page 1</Text>
           </View>
@@ -37,8 +39,6 @@ export default class example extends Component {
 const styles = StyleSheet.create({
   container: {
     width: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'red',
   },
 });

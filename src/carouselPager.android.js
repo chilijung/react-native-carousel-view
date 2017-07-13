@@ -18,10 +18,19 @@ export default class CarouselPager extends Component {
   viewPager: ViewPagerAndroid
   props: Props
 
+  state: {
+    pageState: 'string'
+  }
+
   constructor(props: Props) {
     super(props);
     (this: any).scrollToPage = this.scrollToPage.bind(this);
-    (this: any)._onPageSelected = this._onPageSelected.bind(this);
+    (this: any)._pageStateChange = this._pageStateChange.bind(this);
+    (this: any)._selectedPage = this._selectedPage.bind(this);
+
+    this.state = {
+      pageState: 'idle',
+    };
   }
 
   scrollToPage(page: number, animated?: boolean) {
@@ -33,24 +42,35 @@ export default class CarouselPager extends Component {
     } else {
       this.viewPager.setPageWithoutAnimation(page);
     }
-
-    this._onPageSelected(page);
   }
 
-  _onPageSelected(page) {
-    this.props.onEnd(page);
+  _selectedPage(e) {
+    const {onEnd} = this.props;
+    const activePage = e.nativeEvent.position;
+    this.setState({activePage});
+
+    onEnd(activePage);
+  }
+
+  _pageStateChange(pageState) {
+    const {onBegin} = this.props;
+    if (pageState === 'dragging') {
+      // if page state is dragging, call on begin
+      return this.setState({pageState}, onBegin());
+    }
+    return this.setState({pageState});
   }
 
   render() {
-    const {children, contentContainerStyle, onBegin} = this.props;
+    const {children, contentContainerStyle} = this.props;
     return (
       <ViewPagerAndroid
         ref={(viewPager) => {
           this.viewPager = viewPager;
         }}
         style={[contentContainerStyle]}
-        onPageScroll={onBegin}
-        onPageSelected={(e) => this._onPageSelected(e.nativeEvent.position)}
+        onPageScrollStateChanged={this._pageStateChange}
+        onPageSelected={this._selectedPage}
       >
         {children}
       </ViewPagerAndroid>

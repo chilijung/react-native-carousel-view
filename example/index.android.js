@@ -17,7 +17,9 @@ export default class example extends Component {
   render() {
     return (
       <View>
-        <Carousel>
+        <Carousel width={375} contentContainerStyle={{
+          height: 500,
+        }}>
           <View style={styles.container}>
             <Text>Page 1</Text>
           </View>
