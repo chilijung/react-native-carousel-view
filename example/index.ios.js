@@ -6,6 +6,7 @@
 
 import React, {Component} from 'react';
 import {
+  Button,
   StyleSheet,
   Text,
   View,
@@ -14,6 +15,19 @@ import {
 import Carousel from 'react-native-carousel-view';
 
 export default class example extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {page: 0};
+
+    (this: any)._setPage = this._setPage.bind(this);
+  }
+
+  _setPage(page: number) {
+    this.setState({
+      page,
+    });
+  }
+
   render() {
     return (
       <View style={{
@@ -21,10 +35,16 @@ export default class example extends Component {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
+        <Button
+          onPress={() => this._setPage(1)}
+          title="set to page 2"
+          color="#841584"
+        />
         <View style={styles.container}>
           <Carousel
             width={300}
-            height={300}>
+            height={300}
+            initialPage={this.state.page}>
             <View style={styles.contentContainer}>
               <Text>Page 1</Text>
             </View>
