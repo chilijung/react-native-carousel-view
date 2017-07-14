@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 type Props = {
+  height: number,
   width: number,
   onEnd: (activePage: number) => void,
   onBegin: () => void,
@@ -43,8 +44,13 @@ export default class CarouselPager extends Component {
   }
 
   render() {
-    const {onBegin, children, contentContainerStyle, width} = this.props;
-    const {height} = contentContainerStyle;
+    const {
+      onBegin,
+      children,
+      contentContainerStyle,
+      width,
+      height,
+    } = this.props;
     const newChildren = Children.map(children, (element) => {
       if (!React.isValidElement(element)) return;
       const {style, ...restProps} = element.props;

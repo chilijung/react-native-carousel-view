@@ -23,6 +23,7 @@ type Props = {
   indicatorText: string,
   inactiveIndicatorText: string,
   width: ?number,
+  height: number,
   initialPage: number,
   indicatorSpace: number,
   animate: boolean,
@@ -54,6 +55,7 @@ export default class Carousel extends Component {
     indicatorText: '●',
     inactiveIndicatorText: '●',
     width: null,
+    height: 200,
     initialPage: 0,
     indicatorSpace: 20,
     animate: true,
@@ -63,6 +65,10 @@ export default class Carousel extends Component {
 
   constructor(props: Props) {
     super(props);
+
+    if (!props.height) {
+      throw new Error('You must set a height props.');
+    }
 
     this.state = {
       activePage: props.initialPage > 0 ? props.initialPage : 0,
@@ -212,24 +218,27 @@ export default class Carousel extends Component {
   }
 
   render() {
-    const {contentContainerStyle} = this.props;
+    const {height, contentContainerStyle} = this.props;
     const width = this.getWidth();
     return (
-      <View style={{width, overflow: 'hidden'}}>
-        <CarouselPager
-          ref={(pager) => {
-            this.pager = pager;
-          }}
-          width={width}
-          contentContainerStyle={[
-            styles.contentContainer,
-            contentContainerStyle,
-          ]}
-          onBegin={this._onAnimationBegin}
-          onEnd={this._onAnimationEnd}
-        >
-          {this.children}
-        </CarouselPager>
+      <View style={{width}}>
+        <View style={{width, height, overflow: 'hidden'}}>
+          <CarouselPager
+            ref={(pager) => {
+              this.pager = pager;
+            }}
+            width={width}
+            height={height}
+            contentContainerStyle={[
+              styles.contentContainer,
+              contentContainerStyle,
+            ]}
+            onBegin={this._onAnimationBegin}
+            onEnd={this._onAnimationEnd}
+          >
+            {this.children}
+          </CarouselPager>
+        </View>
         {this.renderPageIndicator()}
       </View>
     );

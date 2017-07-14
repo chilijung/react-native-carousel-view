@@ -22,9 +22,9 @@ export default class example extends Component {
         alignItems: 'center',
       }}>
         <View style={styles.container}>
-          <Carousel width={375} contentContainerStyle={{
-            height: 300,
-          }}>
+          <Carousel
+            width={300}
+            height={300}>
             <View style={styles.contentContainer}>
               <Text>Page 1</Text>
             </View>
@@ -38,15 +38,13 @@ export default class example extends Component {
         </View>
         <View style={styles.container}>
           <Carousel
-            width={375}
+            width={300}
+            height={300}
             delay={2000}
             indicatorAtBottom={false}
             indicatorSize={20}
             indicatorText="✽"
-            indicatorColor="red"
-            contentContainerStyle={{
-              height: 300,
-            }}>
+            indicatorColor="red">
             <View style={styles.contentContainer}>
               <Text>Page 1</Text>
             </View>

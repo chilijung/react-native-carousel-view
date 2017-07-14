@@ -8,6 +8,7 @@ import {
 
 type Props = {
   width: number,
+  height: number,
   onEnd: (activePage: number) => void,
   onBegin: () => void,
   contentContainerStyle: any,
@@ -62,13 +63,13 @@ export default class CarouselPager extends Component {
   }
 
   render() {
-    const {children, contentContainerStyle} = this.props;
+    const {children, contentContainerStyle, width, height} = this.props;
     return (
       <ViewPagerAndroid
         ref={(viewPager) => {
           this.viewPager = viewPager;
         }}
-        style={contentContainerStyle}
+        style={[contentContainerStyle, {width, height}]}
         onPageScrollStateChanged={this._pageStateChange}
         onPageSelected={this._selectedPage}
       >

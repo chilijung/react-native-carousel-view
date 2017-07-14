@@ -43,6 +43,7 @@ type Props = {
   indicatorText: string, // Active indicator content ( You can customize to use any Unicode character )
   inactiveIndicatorText: string, // Inactive indicator content ( You can customize to use any Unicode character )
   width: ?number, // the width of the carousel
+  height: number, // the height of the carousel
   initialPage: number, // initial start page
   indicatorSpace: number, // space between each indicator
   animate: boolean, // Enable carousel autoplay
@@ -67,6 +68,7 @@ static defaultProps = {
   indicatorText: '•',
   inactiveIndicatorText: '•',
   width: null,
+  height: 200,
   initialPage: 0,
   indicatorSpace: 10,
   animate: true,
@@ -101,14 +103,13 @@ export default class example extends Component {
         <View style={styles.container}>
           <Carousel
             width={375}
+            height={300}
             delay={2000}
             indicatorAtBottom={false}
             indicatorSize={20}
             indicatorText="✽"
             indicatorColor="red"
-            contentContainerStyle={{
-              height: 300,
-            }}>
+            >
             <View style={styles.contentContainer}>
               <Text>Page 1</Text>
             </View>
@@ -160,9 +161,8 @@ This is an example.
 ```js
 <Carousel
   width={375}
-  contentContainerStyle={{
-    height: 300, // =====> the container will be height 300
-  }}>
+  height={300} // =====> the container will be height 300
+  >
   <View style={{height: 200, width: 300}}> // ===> child height 200, width 300. if the children's height and width is not set width and height from Carousel component will set to children.
     <Text>Page 1</Text>
   </View>
@@ -184,9 +184,8 @@ view style. According to the react-native docs https://facebook.github.io/react-
 ```js
 <Carousel
   width={375}
-  contentContainerStyle={{
-    height: 300, // =====> the container will be height 300
-  }}>
+  height={300} // =====> the container will be height 300
+  >
   <View style={{height: 200}}> // ===> child height will still be 300, and width will automatically be 375 and can't be changed
     <Text>Page 1</Text>
   </View>
