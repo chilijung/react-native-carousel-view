@@ -220,7 +220,7 @@ and run `react-native run-ios` or `react-native run-android` to open simulators.
 
 ## See also
 
-- https://github.com/Canner/react-native-image-page - a react-native image carousel
+- https://github.com/Canner/react-native-image-page - a react-native image carousel, with zoom-pan gestures and full-screen support, work on both iOS and Android
 
 ## NOTE
 
