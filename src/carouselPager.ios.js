@@ -70,6 +70,7 @@ export default class CarouselPager extends Component {
         }}
         contentContainerStyle={contentContainerStyle}
         automaticallyAdjustContentInsets={false}
+        scrollEventThrottle={16}
         horizontal={true}
         pagingEnabled={true}
         showsHorizontalScrollIndicator={false}

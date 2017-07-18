@@ -52,6 +52,8 @@ type Props = {
   contentContainerStyle?: {[attr: string]: any}, // content container style, in `Android` this will pass to ViewPagerAndroid style props, in `iOS` this will pass to ScrollView contentContainerStyle props.
   children: any,
   onPageChange?: (number) => void, // Called when the active page changes
+  onScrollBegin?: () => void, // Called when scroll begin
+  onScroll?: () => void, // Called while scrolling
 }
 ```
 

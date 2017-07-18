@@ -24,7 +24,10 @@ export default class example extends Component {
         <View style={styles.container}>
           <Carousel
             width={300}
-            height={300}>
+            height={300}
+            onScroll={() => console.log('on scroll view')}
+            onScrollBegin={() => console.log('scroll begin')}
+            onPageChange={(page) => console.log('scroll change', page)}>
             <View style={styles.contentContainer}>
               <Text>Page 1</Text>
             </View>

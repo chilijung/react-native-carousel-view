@@ -11,6 +11,7 @@ type Props = {
   height: number,
   onEnd: (activePage: number) => void,
   onBegin: () => void,
+  onScroll: () => void,
   contentContainerStyle: any,
   children: any,
 }
@@ -20,7 +21,7 @@ export default class CarouselPager extends Component {
   props: Props
 
   state: {
-    pageState: 'string'
+    pageState: string
   }
 
   constructor(props: Props) {
@@ -28,6 +29,7 @@ export default class CarouselPager extends Component {
     (this: any).scrollToPage = this.scrollToPage.bind(this);
     (this: any)._pageStateChange = this._pageStateChange.bind(this);
     (this: any)._selectedPage = this._selectedPage.bind(this);
+    (this: any)._pageScroll = this._pageScroll.bind(this);
 
     this.state = {
       pageState: 'idle',
@@ -43,6 +45,11 @@ export default class CarouselPager extends Component {
     } else {
       this.viewPager.setPageWithoutAnimation(page);
     }
+  }
+
+  _pageScroll() {
+    const {onScroll} = this.props;
+    onScroll();
   }
 
   _selectedPage(e) {
@@ -70,6 +77,7 @@ export default class CarouselPager extends Component {
           this.viewPager = viewPager;
         }}
         style={[contentContainerStyle, {width, height}]}
+        onPageScroll={this._pageScroll}
         onPageScrollStateChanged={this._pageStateChange}
         onPageSelected={this._selectedPage}
       >

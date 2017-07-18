@@ -63,6 +63,7 @@ export default class Carousel extends Component {
     animate: true,
     delay: 1000,
     loop: true,
+    onScroll: () => {},
   }
 
   constructor(props: Props) {
