@@ -2366,9 +2366,9 @@ hasha@^2.2.0:
     is-stream "^1.0.1"
     pinkie-promise "^2.0.0"
 
-haul@^1.0.0-beta.2:
+"haul@https://github.com/Canner/haul.git#master":
   version "1.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/haul/-/haul-1.0.0-beta.2.tgz#d8fe6d66d5f6e2419e145e425003489fef54931b"
+  resolved "https://github.com/Canner/haul.git#c210ca0ee3479e4fbfb446ad094f93bb0396cf6f"
   dependencies:
     babel-core "^6.24.0"
     babel-loader "^6.4.1"
@@ -4080,9 +4080,17 @@ react-devtools-core@2.3.1:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
-"react-native-carousel-view@file:../":
-  version "1.0.0"
+react-mixin@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/react-mixin/-/react-mixin-3.0.5.tgz#e0b7b6713fdc9ddc429267df808b6ac5184c6706"
   dependencies:
+    object-assign "^4.0.1"
+    smart-mixin "^2.0.0"
+
+"react-native-carousel-view@file:../":
+  version "0.3.1"
+  dependencies:
+    react-mixin "^3.0.5"
     react-timer-mixin "^0.13.3"
 
 react-native@0.46.1:
@@ -4601,6 +4609,10 @@ slash@^1.0.0:
 slide@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
+
+smart-mixin@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/smart-mixin/-/smart-mixin-2.0.0.tgz#a34a1055e32a75b30d2b4e3ca323dc99cb53f437"
 
 sntp@1.x.x:
   version "1.0.9"

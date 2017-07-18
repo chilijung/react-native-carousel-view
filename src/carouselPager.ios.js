@@ -11,6 +11,7 @@ type Props = {
   width: number,
   onEnd: (activePage: number) => void,
   onBegin: () => void,
+  onScroll: () => void,
   contentContainerStyle: any,
   children: any,
 }
@@ -46,6 +47,7 @@ export default class CarouselPager extends Component {
   render() {
     const {
       onBegin,
+      onScroll,
       children,
       contentContainerStyle,
       width,
@@ -73,6 +75,7 @@ export default class CarouselPager extends Component {
         showsHorizontalScrollIndicator={false}
         bounces={false}
         onScrollBeginDrag={onBegin}
+        onScroll={onScroll}
         onMomentumScrollEnd={this._onMomentumScrollEnd}
         scrollsToTop={false}
       >

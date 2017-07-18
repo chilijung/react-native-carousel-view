@@ -32,6 +32,8 @@ type Props = {
   contentContainerStyle?: {[attr: string]: any},
   children: any,
   onPageChange?: (number) => void,
+  onScrollBegin?: () => void,
+  onScroll?: () => void,
 }
 
 export default class Carousel extends Component {
@@ -115,20 +117,24 @@ export default class Carousel extends Component {
   }
 
   _resetPager() {
-    const {initialPage, animate} = this.props;
+    const {initialPage} = this.props;
     if (initialPage > 0) {
       this.setState({activePage: initialPage});
       this.pager.scrollToPage(initialPage, false);
     }
 
-    if (animate && this.children) {
+    if (this.children) {
       this._setUpTimer();
     }
   }
 
   _setUpTimer() {
-    if (this.children.length > 1) {
+    const {animate} = this.props;
+    if (this.timer) {
       this.clearTimeout(this.timer);
+    }
+
+    if (animate && this.children.length > 1) {
       this.timer = this.setTimeout(this._animateNextPage, this.props.delay);
     }
   }
@@ -158,6 +164,10 @@ export default class Carousel extends Component {
   }
 
   _onAnimationBegin() {
+    const {onScrollBegin} = this.props;
+    if (onScrollBegin) {
+      onScrollBegin();
+    }
     this.clearTimeout(this.timer);
   }
 
@@ -220,7 +230,7 @@ export default class Carousel extends Component {
   }
 
   render() {
-    const {height, contentContainerStyle} = this.props;
+    const {height, contentContainerStyle, onScroll} = this.props;
     const width = this.getWidth();
     return (
       <View style={{width}}>
@@ -235,6 +245,7 @@ export default class Carousel extends Component {
               styles.contentContainer,
               contentContainerStyle,
             ]}
+            onScroll={onScroll}
             onBegin={this._onAnimationBegin}
             onEnd={this._onAnimationEnd}
           >

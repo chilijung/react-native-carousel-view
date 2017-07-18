@@ -44,6 +44,10 @@ export default class example extends Component {
           <Carousel
             width={300}
             height={300}
+            animate={false}
+            onScroll={() => console.log('on scroll view')}
+            onScrollBegin={() => console.log('scroll begin')}
+            onPageChange={(page) => console.log('scroll change', page)}
             initialPage={this.state.page}>
             <View style={styles.contentContainer}>
               <Text>Page 1</Text>
