@@ -1,13 +1,14 @@
 {
   "name": "react-native-carousel-view",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "react-native carousel",
   "main": "./src/carousel.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "./node_modules/.bin/eslint src && ./node_modules/.bin/flow"
   },
   "author": "chilijung <chilijung@gmail.com> (http://lijung.com/)",
   "license": "MIT",
