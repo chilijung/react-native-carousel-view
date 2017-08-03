@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "react": "16.0.0-alpha.12",
-    "react-native": "0.46.1",
-    "react-native-carousel-view": "file:../"
+    "react-native": "0.46.1"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",
+    "babel-plugin-module-resolver": "^2.7.1",
     "babel-preset-react-native": "2.1.0",
-    "haul": "https://github.com/Canner/haul.git#master",
+    "haul": "1.0.0-beta.4",
     "jest": "20.0.4",
     "react-test-renderer": "16.0.0-alpha.12"
   },

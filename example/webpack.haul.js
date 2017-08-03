@@ -8,6 +8,7 @@ module.exports = ({platform}, defaults) => ({
       ...defaults.resolve.alias,
       'react': path.resolve(__dirname, './node_modules/react'),
       'react-native': path.resolve(__dirname, './node_modules/react-native'),
+      'react-native-carousel-view': '../',
     },
   },
 });

@@ -218,8 +218,6 @@ $ haul start
 
 and run `react-native run-ios` or `react-native run-android` to open simulators.
 
-**TIPS** if you want to live reload `example` when modified `react-native-carousel-view`, use `yarn link`!
-
 ## See also
 
 - https://github.com/Canner/react-native-image-page - a react-native image carousel, with zoom-pan gestures and full-screen support, work on both iOS and Android
