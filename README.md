@@ -1,5 +1,7 @@
 # react-native-carousel-view
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Canner/react-native-carousel-view.svg)](https://greenkeeper.io/)
+
 react-native carousel, work on both `iOS` and `android`, test on RN >= 0.45 (if this work on earlier version, please open an issue. And will add here)
 
 ## Install
