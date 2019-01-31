@@ -105,7 +105,7 @@ export default class Carousel extends Component {
 
     // when received props it will update all views, with new props.
     this.clearTimeout(this.timer);
-    this._resetPager();
+    this._resetPager(nextProps);
   }
 
   componentDidMount() {
@@ -117,8 +117,8 @@ export default class Carousel extends Component {
     this.pager.scrollToPage(activePage);
   }
 
-  _resetPager() {
-    const {initialPage} = this.props;
+  _resetPager(nextProps) {
+    const {initialPage} = nextProps ? nextProps : this.props;
     if (initialPage > 0) {
       this.setState({activePage: initialPage});
       this.pager.scrollToPage(initialPage, false);
