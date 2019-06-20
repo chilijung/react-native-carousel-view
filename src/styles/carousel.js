@@ -5,9 +5,6 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  contentContainer: {
-    height: 200,
-  },
   pageIndicator: {
     position: 'absolute',
     flexDirection: 'row',

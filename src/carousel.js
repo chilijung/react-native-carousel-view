@@ -243,7 +243,7 @@ export default class Carousel extends Component {
             width={width}
             height={height}
             contentContainerStyle={[
-              styles.contentContainer,
+              {height},
               contentContainerStyle,
             ]}
             onScroll={onScroll}
