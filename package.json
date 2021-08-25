@@ -6,6 +6,10 @@
   "directories": {
     "example": "example"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chilijung/react-native-carousel-view.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "./node_modules/.bin/eslint src && ./node_modules/.bin/flow"
